@@ -6,6 +6,7 @@
 #include <map>
 #include <iostream>
 #include <algorithm>
+#include <math.h>
 using namespace std;
 
 int solution(int n, vector<int> lost, vector<int> reserve) {
@@ -51,13 +52,78 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
     }
     return answer;
 }
+int func1(int N)
+{
+    int sum = 0;
+    for (int i = 1; i <= N; i++)
+    {
+        if (i % 3 == 0)
+            sum += i;
+        else if (i % 5 == 0)
+            sum += i;
+    }
+
+    return sum;
+}
+
+int func2(int arr[], int N)
+{
+    vector<int> arrvec(arr,  arr + sizeof(arr) / sizeof(arr[0]));
+    for (int i = 0; i < N; i++)
+    {
+        int findnumber = 100 - arr[i];
+        if(findnumber != arr[i])
+        {
+            cout << findnumber << endl;
+            if (find(arrvec.begin(), arrvec.end(), findnumber) != arrvec.end())
+            {
+                cout << "found!" << endl;
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+int func3(int n)
+{
+    int nrun = sqrt(n);
+    if (nrun * nrun == n)
+        return 1;
+    return 0;
+}
+
+int func4(int n)
+{
+    int dup = 0;
+    int m = 1;
+    while (dup < n)
+    {
+        int temp = pow(2, m);
+        if (temp > n)
+            break;
+        else
+            dup = temp;
+            m++;
+    }
+   // cout << m << endl;
+    return dup;
+
+}
+
 int main()
 {
     int n = 5;
     vector<int> m = { 2, 4 };
     vector<int> o = { 1, 3, 5 };
+   /// cout << func1(34567) << endl;
 
-    std::cout << solution(n,m,o) << endl;
+    int arr[4] = { 4, 13, 63, 87 };
+    //cout << func2( arr, 4) << endl;
+
+    //cout << func3(756580036) << endl;
+
+    cout << func4(97615282) << endl;
+  //  std::cout << solution(n,m,o) << endl;
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
