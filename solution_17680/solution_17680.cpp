@@ -6,6 +6,10 @@
 
 using namespace std;
 
+
+// LRU 란 알고리즘을 모르면 못 푸는 문제인데, 아무런 설명 없이 LRU를 구현하라고 한다. 문제로서 괜찮은 건가?
+// 어쨌든 보통 더블 링크드 리스트를 사용해서 구현하는데, 용례를 보니 deque와 큰 차이가 없는거 같아 deque 로 구현했다.
+
 int solution(int cacheSize, vector<string> cities) {
     int answer = 0;
     deque<string> cache;
@@ -39,7 +43,7 @@ int solution(int cacheSize, vector<string> cities) {
         {
             //cache miss
             answer += 5;
-            if (cacheSize >= 1)
+            if (cacheSize >= 1) //cacheSize가 0일 경우 런타임 에러가 발생하기 때문에
             {
                 cache.pop_back();
                 cache.push_front(cities[i]);
